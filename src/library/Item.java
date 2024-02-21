@@ -1,10 +1,10 @@
 package library;
 
 public abstract class Item {
-    private String name;
+    protected String name;
     protected String id;
-    private String author;
-    private int year;
+    protected String author;
+    protected int year;
     private static int numberOfItems;
 
     public Item() {
