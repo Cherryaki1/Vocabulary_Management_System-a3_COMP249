@@ -54,6 +54,31 @@ public class Driver {
                         // Delete an item
                         case 2:
 
+                            // If the array isn't empty
+                            if (library != null) {
+                                System.out.print("Enter the number of the item you would like to remove. ");
+                                int index = sc.nextInt();
+                                // If the user enters a number that's out of bounds of the array, keep prompting
+                                // the user until they enter a valid number
+                                while (index < 0 || index >= library.length) {
+                                    System.out.print("Invalid item number. Please enter a valid item number.");
+                                    index = sc.nextInt();
+                                }
+
+                                // Create a new array that has one less element than the original array
+                                Item[] newLibrary = new Item[library.length - 1];
+                                for (int i = 0, j = 0; i < library.length; i++) {
+                                    // If i isn't equal to index, add element from library to newLibrary and
+                                    // increment j
+                                    if (i != index) {
+                                        newLibrary[j++] = library[i];
+                                    }
+                                }
+                                library = newLibrary;
+                            } else { // If the array is empty, display error message
+                                System.out.println("There are no items to remove.");
+                            }
+
                             break;
 
                         // Change information of an item
