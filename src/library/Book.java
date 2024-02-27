@@ -16,9 +16,8 @@ public class Book extends Item {
         this.id = "B" + ++Book.numberOfBooks;
     }
 
-    public Book(Book book, int numberOfPages) {
+    public Book(Book book) {
         super(book);
-        this.numberOfPages = numberOfPages;
         this.id = "B" + ++Book.numberOfBooks;
     }
 

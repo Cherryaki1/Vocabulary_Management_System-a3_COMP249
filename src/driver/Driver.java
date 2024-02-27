@@ -9,6 +9,7 @@ import library.Journal;
 import library.Media;
 
 public class Driver {
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -153,9 +154,79 @@ public class Driver {
 
                     break;
 
+                // Option 2
+                case 2:
+
+                    break;
+
+                // Option 3
+                case 3:
+
+                    break;
+
+                // Option 4
+                case 4:
+
+                    break;
+
+                // Option 5
+                case 5:
+
+                    break;
+
+                // Option 6
+                case 6:
+
+                    break;
+
+                // Option 7
+                case 7:
+
+                    break;
+
             }
 
         } while (choice != 7);
+
+        // Predefined/Hard-coded scenario
+
+        Book b1 = new Book();
+        Book b2 = new Book();
+        Book b3 = new Book();
+
+        Journal j1 = new Journal();
+        Journal j2 = new Journal();
+        Journal j3 = new Journal();
+
+        Media m1 = new Media();
+        Media m2 = new Media();
+        Media m3 = new Media();
+
+        Client c1 = new Client();
+        Client c2 = new Client();
+        Client c3 = new Client();
+
+        Item[] predefinedLibrary = { b1, b2, b3, j1, j2, j3, m1, m2, m3 };
+        Book[] books = { b1, b2, b3 };
+        Journal[] journals = { j1, j2, j3 };
+        Media[] medias = { m1, m2, m3 };
+
+        // Display information of each item
+        for (Item item : predefinedLibrary) {
+            System.out.println(item);
+        }
+
+        // Testing the equality of the items
+
+        // Book with the highest number of pages
+        System.out.println(getBiggestBook(books));
+
+        // Copy of books array with the array of Media
+        try {
+            copyBooks(medias);
+        } catch (IllegalArgumentException  e) {
+            System.out.println("Invalid parameter.");
+        }
 
         sc.close();
 
@@ -174,6 +245,37 @@ public class Driver {
                         "\n6. Make a copy of the books array" +
                         "\n7. Quit" +
                         "\nEnter your choice: ");
+    }
+
+    public static Book getBiggestBook(Book[] books) {
+        Book biggestBook = books[0];
+
+        for (int i = 1; i < books.length; i++) {
+            // If the number of pages of the current book is higher than the ones of
+            // biggestBook
+            if (books[i].getNumberOfPages() > biggestBook.getNumberOfPages()) {
+                // Update biggestBook with the book with the highest number of pages
+                biggestBook = books[i];
+            }
+        }
+
+        return biggestBook;
+    }
+
+    public static Book[] copyBooks(Item[] books) {
+        // If the array is not a Book object, throw exception
+        if (!(books instanceof Book[])) {
+            throw new IllegalArgumentException();
+        }
+
+        // Create a new array with the same size as books
+        Book[] copyBooks = new Book[books.length];
+        for (int i = 0; i < books.length; i++) {
+            // Storing the elements from books to copyBooks
+            copyBooks[i] = (Book) books[i];
+        }
+        return copyBooks;
+
     }
 
 }

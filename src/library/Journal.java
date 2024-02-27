@@ -16,9 +16,8 @@ public class Journal extends Item {
         this.id = "J" + ++Journal.numberOfJournals;
     }
 
-    public Journal(Journal journal, int volumeNumber) {
+    public Journal(Journal journal) {
         super(journal);
-        this.volumeNumber = volumeNumber;
         this.id = "J" + ++Journal.numberOfJournals;
     }
 

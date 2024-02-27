@@ -16,9 +16,8 @@ public class Media extends Item {
         this.id = "M" + ++Media.numberOfMedia;
     }
 
-    public Media(Media media, String type) {
+    public Media(Media media) {
         super(media);
-        this.type = type;
         this.id = "M" + ++Media.numberOfMedia;
     }
 
