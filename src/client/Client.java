@@ -89,6 +89,14 @@ public class Client {
         this.leasedItems = copyLeasedItem;
     }
 
+    public String displayLeasedItems() {
+        String leasedList = "";
+        for (int i = 0; i < leasedItems.length;i++) {
+            leasedList += leasedItems[i] + "\n";
+        }
+        return leasedList;
+    }
+
     @Override
     public String toString() {
         return "";
