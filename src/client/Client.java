@@ -7,7 +7,7 @@ public class Client {
     private String email;
     private String phone;
     private Item[] leasedItems;
-    
+
 
     public Client() {
         this.name = "";
@@ -63,6 +63,14 @@ public class Client {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String displayLeasedItems() {
+        String leasedList = "";
+        for (int i = 0; i < leasedItems.length;i++) {
+            leasedList += leasedItems[i] + "\n";
+        }
+        return leasedList;
     }
 
     @Override

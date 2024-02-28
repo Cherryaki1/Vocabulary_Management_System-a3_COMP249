@@ -370,7 +370,11 @@ public class Driver {
 
                 // Option 4
                 case 4:
-
+                sc.nextLine();
+                System.out.print("Please input the index of the client you would like to display: ");
+                int indexClient = sc.nextInt();
+                System.out.println("Here is the list of all the items listed by the selected client: ");
+                clientList[indexClient].displayLeasedItems();
                     break;
 
                 // Option 5
