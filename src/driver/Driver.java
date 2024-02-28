@@ -155,10 +155,11 @@ public class Driver {
                 // Option 2
                 case 2:
 
-                    System.out.print(
-                            "1. Add a client" +
-                                    "\n2. Edit a client info" +
-                                    "\n3. Delete a client");
+                    System.out.print("Please select the opperation you would like to do: " +
+                            "\n1. Add a client" +
+                            "\n2. Edit a client info" +
+                            "\n3. Delete a client" +
+                            "\nEnter your choice: ");
 
                     int clientChoice = sc.nextInt();
 
@@ -183,7 +184,44 @@ public class Driver {
                             clientList[clientList.length - 1] = new Client(cName, cPhone, cEmail);
                             break;
 
+                        case 2:
+                            sc.nextLine();
+                            System.out.print("Please input the index of the client you would like to edit: ");
+                            int indexEdit = sc.nextInt();
+                            System.out.print("Please select which information you would like to edit" +
+                                    "\n1. Name" +
+                                    "\n2. Phone number" +
+                                    "\n3. Email" +
+                                    "\nEnter your choice: ");
+                            int editChoice = sc.nextInt();
+
+                            switch(editChoice) {
+                                case 1:
+                                sc.nextLine();
+                                System.out.print("Please enter a new name: ");
+                                String newName = sc.nextLine();
+                                clientList[indexEdit].setName(newName);
+                                break;
+
+                                case 2:
+                                sc.nextLine();
+                                System.out.print("Please enter a new phone number: ");
+                                String newPhone = sc.nextLine();
+                                clientList[indexEdit].setPhone(newPhone);
+                                break;
+
+                                case 3:
+                                sc.nextLine();
+                                System.out.print("Please enter a new email: ");
+                                String newEmail = sc.nextLine();
+                                clientList[indexEdit].setEmail(newEmail);
+                                break;
+                            }
+
+                            break;
+
                         case 3:
+                            sc.nextLine();
                             if (clientList != null) {
                                 System.out.print("Enter the index of the client you would like to remove: ");
                                 int index = sc.nextInt();
@@ -200,7 +238,7 @@ public class Driver {
                                     // If i isn't equal to index, add element from library to newLibrary and
                                     // increment j
                                     if (i != index) {
-                                        clientListDeep[j++] = clientList[i];
+                                        clientListDel[j++] = clientList[i];
                                     }
                                 }
                                 clientList = clientListDel;
