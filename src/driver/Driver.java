@@ -515,15 +515,17 @@ public class Driver {
                         sc.nextLine();
                         System.out.println("Here is the list of all leased items: ");
                         for (int i = 0; i < library.length; i++) {
-                            if (library[i].getLeased()) {
+                            if (library[i]!= null) {
+                                if (library[i].getLeased()){
                                 System.out.println(library[i] + "\n");
+                                }
                             }
                         }
                         break;
 
                     // Option 6
                     case 6:
-                        System.out.println("The biggest book is " + getBiggestBook(library));
+                        System.out.println("The information of the biggest book is as follow\n" + getBiggestBook(library));
                         break;
 
                     // Option 7
@@ -532,9 +534,11 @@ public class Driver {
                         Book[] booksList = new Book[Book.getNumberOfBooks()];
                         for (int i = 0, j = 0; i < library.length; i++) {
                             // If the item is a book
+                            if (library[i]!=null) {
                             if ((library[i].getId()).charAt(0) == ('B')) {
                                 booksList[j++] = (Book) library[i];
                             }
+                        }
                         }
                         Book[] copyBooksArray = copyBooks(booksList);
                         System.out.println("Copy successful!\n");
@@ -616,12 +620,14 @@ public class Driver {
             // If the number of pages of the current book is higher than the ones of
             // biggestBook
 
+            if (library[i]!=null){
             if ((library[i].getId()).charAt(0) == ('B')) {
                 if (((Book) library[i]).getNumberOfPages() > biggestBook.getNumberOfPages()) {
                     // Update biggestBook with the book with the highest number of pages
                     biggestBook = (Book) library[i];
                 }
             }
+        }
         }
 
         return biggestBook;
