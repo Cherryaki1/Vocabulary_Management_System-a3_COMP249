@@ -86,19 +86,19 @@ public class Driver {
                                         System.out.print("Number of pages: ");
                                         int numberOfPages = sc.nextInt();
                                         // Creating a new book and adding it to the library
-                                        library[Item.getNumberOfItems() + 1] = new Book(name, author, year,
+                                        library[Item.getNumberOfItems()] = new Book(name, author, year,
                                                 numberOfPages);
                                     } else if (itemType.equalsIgnoreCase("Journal")) {
                                         System.out.print("Volume number: ");
                                         int volumeNumber = sc.nextInt();
                                         // Creating a new journal and adding it to the library
-                                        library[Item.getNumberOfItems() + 1] = new Journal(name, author, year,
+                                        library[Item.getNumberOfItems()] = new Journal(name, author, year,
                                                 volumeNumber);
                                     } else if (itemType.equalsIgnoreCase("Media")) {
                                         System.out.print("Type: ");
                                         String type = sc.next();
                                         // Creating a new media and adding it to the library
-                                        library[Item.getNumberOfItems() + 1] = new Media(name, author, year, type);
+                                        library[Item.getNumberOfItems()] = new Media(name, author, year, type);
                                     }
 
                                 } else {
