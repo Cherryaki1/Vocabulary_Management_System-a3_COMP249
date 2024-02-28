@@ -51,7 +51,12 @@ public class Driver {
                     //-----------------------------------------------
 
                     case 1:
-                        System.out.print("1. Add an item" +
+                        System.out.print(
+                                "-----------------------------------------------\n" +
+                                "                  ITEM MANAGER                 \n" +
+                                "-----------------------------------------------\n" +
+                                "Please select the operation you would like to do from the following list " +
+                                "\n1. Add an item" +
                                 "\n2. Delete an item" +
                                 "\n3. Change information of an item" +
                                 "\n4. List all items in a specific category (book, journal, or media)" +
@@ -59,10 +64,12 @@ public class Driver {
                                 "\nEnter your choice: ");
 
                         choice = sc.nextInt();
+                        System.out.println("");
 
                         while (choice < 1 || choice > 5) {
                             System.out.print("Invalid choice. Please enter a valid number. ");
                             choice = sc.nextInt();
+                            System.out.println("");
                         }
 
                         switch (choice) {
@@ -72,7 +79,7 @@ public class Driver {
                                 // If there's enough space in the library
                                 if (Item.getNumberOfItems() < library.length) {
                                     sc.nextLine();
-                                    System.out.println("Please provide the information of the item: ");
+                                    System.out.println("Please provide the information of the item");
                                     System.out.print("Name : ");
                                     String name = sc.nextLine();
                                     System.out.print("Author: ");
@@ -104,6 +111,7 @@ public class Driver {
                                 } else {
                                     System.out.println("There isn't enough space in the library.");
                                 }
+                                System.out.println("");
 
                                 break;
 
@@ -112,7 +120,7 @@ public class Driver {
 
                                 // If the array isn't empty
                                 if (library != null) {
-                                    System.out.print("Enter the number of the item you would like to remove. ");
+                                    System.out.print("Enter the index of the item you would like to remove: ");
                                     int index = sc.nextInt();
                                     // If the user enters a number that's out of bounds of the array or if there's
                                     // no item at the index, keep prompting the user until they enter a valid number
@@ -403,9 +411,15 @@ public class Driver {
 
                         break;
 
-                    // Option 3
+                    //-----------------------------------------------
+                    //                 LEASE MANAGER                 
+                    //-----------------------------------------------
                     case 3:
-                        System.out.print("Please select the operation you would like to do: " +
+                        System.out.print(
+                                "-----------------------------------------------\n" +
+                                "                  LEASE MANAGER                \n" +
+                                "-----------------------------------------------\n" +
+                                "Please select the operation you would like to do from the following list " +
                                 "\n1. Lease an item" +
                                 "\n2. Return an item" +
                                 "\nEnter your choice: ");
