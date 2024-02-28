@@ -379,7 +379,13 @@ public class Driver {
 
                 // Option 5
                 case 5:
+                sc.nextLine();
+                System.out.print("Here is the list of all leased items: ");
+                    for (int i = 0 ; i < library.length ; i++) {
+                        if (library[i] == true) {
 
+                        }
+                    }
                     break;
 
                 // Option 6
