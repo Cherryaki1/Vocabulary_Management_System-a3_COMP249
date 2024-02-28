@@ -3,16 +3,14 @@ package driver;
 import java.util.Scanner;
 
 import client.Client;
-import library.Book;
-import library.Item;
-import library.Journal;
-import library.Media;
+import library.*;
 
 public class Driver {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        Client[] clientList = new Client[0];
         System.out.print("Enter the size of the library. ");
         int size = sc.nextInt();
         Item[] library = new Item[size];
@@ -157,6 +155,35 @@ public class Driver {
                 // Option 2
                 case 2:
 
+                    System.out.print(
+                            "1. Add a client" +
+                                    "\n2. Edit a client info" +
+                                    "\n3. Delete a client");
+
+                    int clientChoice = sc.nextInt();
+
+                    switch (clientChoice) {
+                        case 1:
+                            sc.nextLine();
+                            System.out.print("Please provide the clients information:");
+                            System.out.print("Name :");
+                            String cName = sc.nextLine();
+                            System.out.print("Phone number: ");
+                            String cPhone = sc.nextLine();
+                            System.out.print("Email: ");
+                            String cEmail = sc.nextLine();
+
+                            // Create a deep copy of client list
+                            Client[] clientListDeep = new Client[clientList.length];
+                            for (int i = 0; i < clientList.length; i++) {
+                                // Storing the elements from books to copyBooks
+                                clientListDeep[i] = clientList[i];
+                            }
+                            clientList = clientListDeep;
+                            clientList[clientList.length-1] = new Client(cName, cPhone, cEmail);
+
+                    }
+
                     break;
 
                 // Option 3
@@ -224,7 +251,7 @@ public class Driver {
         // Copy of books array with the array of Media
         try {
             copyBooks(medias);
-        } catch (IllegalArgumentException  e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Invalid parameter.");
         }
 

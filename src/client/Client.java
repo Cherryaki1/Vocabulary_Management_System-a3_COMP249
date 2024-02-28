@@ -1,27 +1,36 @@
 package client;
+import library.*;
 
 public class Client {
     private String name;
     private String id;
     private String email;
     private String phone;
+    private Item[] leasedItems;
+    
 
     public Client() {
         this.name = "";
         this.email = "";
         this.phone = "";
+        this.id = "C" + phone;
+        this.leasedItems = null;
     }
 
     public Client(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.id = "C" + phone;
+        this.leasedItems = new Item[1]; // MAYBE WE INITIALIZE TO NULL IDK
     }
 
     public Client(Client client) {
         this.name = client.name;
         this.email = client.email;
         this.phone = client.phone;
+        this.id = client.id;
+        this.leasedItems = client.leasedItems;
     }
 
     public String getName() {
