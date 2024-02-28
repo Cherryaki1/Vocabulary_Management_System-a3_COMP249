@@ -93,19 +93,19 @@ public class Driver {
                                         System.out.print("Number of pages: ");
                                         int numberOfPages = sc.nextInt();
                                         // Creating a new book and adding it to the library
-                                        library[Item.getNumberOfItems() + 1] = new Book(name, author, year,
+                                        library[Item.getNumberOfItems()] = new Book(name, author, year,
                                                 numberOfPages);
                                     } else if (itemType.equalsIgnoreCase("Journal")) {
                                         System.out.print("Volume number: ");
                                         int volumeNumber = sc.nextInt();
                                         // Creating a new journal and adding it to the library
-                                        library[Item.getNumberOfItems() + 1] = new Journal(name, author, year,
+                                        library[Item.getNumberOfItems()] = new Journal(name, author, year,
                                                 volumeNumber);
                                     } else if (itemType.equalsIgnoreCase("Media")) {
                                         System.out.print("Type: ");
                                         String type = sc.next();
                                         // Creating a new media and adding it to the library
-                                        library[Item.getNumberOfItems() + 1] = new Media(name, author, year, type);
+                                        library[Item.getNumberOfItems()] = new Media(name, author, year, type);
                                     }
 
                                 } else {
@@ -122,9 +122,9 @@ public class Driver {
                                 if (library != null) {
                                     System.out.print("Enter the index of the item you would like to remove: ");
                                     int index = sc.nextInt();
-                                    // If the user enters a number that's out of bounds of the array or if there's
-                                    // no item at the index, keep prompting the user until they enter a valid number
-                                    while (index < 0 || index >= library.length || library[index] == null) {
+                                    // If the user enters a number that's out of bounds of the array, 
+                                    // keep prompting the user until they enter a valid number
+                                    while (index < 0 || index >= library.length) {
                                         System.out.print("Invalid item number. Please enter a valid item number.");
                                         index = sc.nextInt();
                                     }
@@ -153,9 +153,9 @@ public class Driver {
                                     System.out.print("Enter the number of the item that you would like to edit: ");
                                     int index = sc.nextInt();
 
-                                    // If the user enters a number that's out of bounds of the array or if there's
-                                    // no item at the index, keep prompting the user until they enter a valid number
-                                    while (index < 0 || index >= library.length || library[index] == null) {
+                                    // If the user enters a number that's out of bounds of the array, 
+                                    // keep prompting the user until they enter a valid number
+                                    while ((index < 0 || index >= library.length)) {
                                         System.out.print("Invalid item number. Please enter a valid item number.");
                                         index = sc.nextInt();
                                     }
@@ -598,7 +598,7 @@ public class Driver {
                 "-----------------------------------------------\n" +
                 "                    MAIN MENU                  \n" +
                 "-----------------------------------------------\n" +
-                "1. Managa items" +
+                "1. Manage items" +
                 "\n2. Manage clients"+
                 "\n3. Manage leases" +
                 "\n4. Show all items leased by a client" +
