@@ -122,34 +122,43 @@ public class Driver {
                             if (library != null) {
                                 System.out.print("Enter the number of the item that you would like to edit: ");
                                 int index = sc.nextInt();
+
                                 // If the user enters a number that's out of bounds of the array and if there's
                                 // no item at the index, keep prompting the user until they enter a valid number
                                 while (index < 0 || index >= library.length || library[index] == null) {
                                     System.out.print("Invalid item number. Please enter a valid item number.");
                                     index = sc.nextInt();
                                 }
-                                System.out.print("Which information would you like to modify: ");
-                                String information = sc.next();
+                                
+                                System.out.print("Which information would you like to modify?" +
+                                        "\n1. Name" +
+                                        "\n2. Author" +
+                                        "\n3. Year" +
+                                        "\n4. Number of pages (Book)" +
+                                        "\n5. Volume number (Journal)" +
+                                        "\n6. Type (Media)");
+
+                                int information = sc.nextInt();
                                 switch (information) {
-                                    case "name":
+                                    case 1:
                                         System.out.print("Name: ");
                                         String name = sc.next();
                                         library[index].setName(name);
                                         break;
 
-                                    case "author":
+                                    case 2:
                                         System.out.print("Author: ");
                                         String author = sc.next();
                                         library[index].setAuthor(author);
                                         break;
 
-                                    case "year":
+                                    case 3:
                                         System.out.print("Year: ");
                                         int year = sc.nextInt();
                                         library[index].setYear(year);
                                         break;
 
-                                    case "pages":
+                                    case 4:
                                         // If the item the user is trying to modify is a book
                                         if (library[index] instanceof Book) {
                                             System.out.print("Number of pages: ");
@@ -160,7 +169,7 @@ public class Driver {
                                         }
                                         break;
 
-                                    case "volume":
+                                    case 5:
                                         // If the item the user is trying to modify is a journal
                                         if (library[index] instanceof Journal) {
                                             System.out.print("Volume Number: ");
@@ -171,7 +180,7 @@ public class Driver {
                                         }
                                         break;
 
-                                    case "type":
+                                    case 6:
                                         // If the item the user is trying to modify is a media
                                         if (library[index] instanceof Media) {
                                             System.out.print("Type: ");
