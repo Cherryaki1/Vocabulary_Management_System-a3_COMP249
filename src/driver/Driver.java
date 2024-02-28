@@ -118,6 +118,75 @@ public class Driver {
                         // Change information of an item
                         case 3:
 
+                            // If the library isn't empty
+                            if (library != null) {
+                                System.out.print("Enter the number of the item that you would like to edit: ");
+                                int index = sc.nextInt();
+                                // If the user enters a number that's out of bounds of the array and if there's
+                                // no item at the index, keep prompting the user until they enter a valid number
+                                while (index < 0 || index >= library.length || library[index] == null) {
+                                    System.out.print("Invalid item number. Please enter a valid item number.");
+                                    index = sc.nextInt();
+                                }
+                                System.out.print("Which information would you like to modify: ");
+                                String information = sc.next();
+                                switch (information) {
+                                    case "name":
+                                        System.out.print("Name: ");
+                                        String name = sc.next();
+                                        library[index].setName(name);
+                                        break;
+
+                                    case "author":
+                                        System.out.print("Author: ");
+                                        String author = sc.next();
+                                        library[index].setAuthor(author);
+                                        break;
+
+                                    case "year":
+                                        System.out.print("Year: ");
+                                        int year = sc.nextInt();
+                                        library[index].setYear(year);
+                                        break;
+
+                                    case "pages":
+                                        // If the item the user is trying to modify is a book
+                                        if (library[index] instanceof Book) {
+                                            System.out.print("Number of pages: ");
+                                            int pages = sc.nextInt();
+                                            ((Book) library[index]).setNumberOfPages(pages);
+                                        } else {
+                                            System.out.println("You can't modify this attribute.");
+                                        }
+                                        break;
+
+                                    case "volume":
+                                        // If the item the user is trying to modify is a journal
+                                        if (library[index] instanceof Journal) {
+                                            System.out.print("Volume Number: ");
+                                            int volumeNumber = sc.nextInt();
+                                            ((Journal) library[index]).setVolumeNumber(volumeNumber);
+                                        } else {
+                                            System.out.println("You can't modify this attribute.");
+                                        }
+                                        break;
+
+                                    case "type":
+                                        // If the item the user is trying to modify is a media
+                                        if (library[index] instanceof Media) {
+                                            System.out.print("Type: ");
+                                            String type = sc.next();
+                                            ((Media) library[index]).setType(type);
+                                        } else {
+                                            System.out.println("You can't modify this attribute.");
+                                        }
+                                        break;
+                                }
+
+                            } else {
+                                System.out.println("The library is empty.");
+                            }
+
                             break;
 
                         // List all items in a specific category (book, journal, or media)
