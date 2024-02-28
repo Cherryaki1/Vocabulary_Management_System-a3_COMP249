@@ -18,14 +18,14 @@ public class Driver {
         // If the user does not enter 1 or 2, keep prompting the user
         // until they enter a valid option
         while (menuOrPredefined != 1 && menuOrPredefined != 2) {
-            System.out.print("Invalid choice. Please enter a valid number. ");
+            System.out.print("Invalid choice. Please enter a valid number: ");
             menuOrPredefined = sc.nextInt();
         }
 
         // Menu
         if (menuOrPredefined == 1) {
 
-            System.out.print("Enter the size of the library. ");
+            System.out.print("Enter the size of the library: ");
             int size = sc.nextInt();
             Item[] library = new Item[size];
 
@@ -37,7 +37,7 @@ public class Driver {
                 // If the user does not enter a number between 1 and 7, keep prompting the user
                 // until they enter a valid option
                 while (choice < 1 || choice > 7) {
-                    System.out.print("Invalid choice. Please enter a valid number. ");
+                    System.out.print("Invalid choice. Please enter a valid number: ");
                     choice = sc.nextInt();
                 }
 
@@ -295,8 +295,8 @@ public class Driver {
                         switch (clientChoice) {
                             case 1:
                                 sc.nextLine();
-                                System.out.print("Please provide the client's information:");
-                                System.out.print("Name :");
+                                System.out.println("Please provide the client's information:");
+                                System.out.print("Name: ");
                                 String cName = sc.nextLine();
                                 System.out.print("Phone number: ");
                                 String cPhone = sc.nextLine();
