@@ -6,12 +6,14 @@ public abstract class Item {
     protected String author;
     protected int year;
     private static int numberOfItems;
+    protected boolean leased;
 
     public Item() {
         this.name = "";
         this.author = "";
         this.year = 0;
         Item.numberOfItems++;
+        this.leased = false;
     }
 
     public Item(String name, String author, int year) {
@@ -19,6 +21,7 @@ public abstract class Item {
         this.author = author;
         this.year = year;
         Item.numberOfItems++;
+        this.leased = false;
     }
 
     public Item(Item item) {
@@ -26,6 +29,7 @@ public abstract class Item {
         this.author = item.author;
         this.year = item.year;
         Item.numberOfItems++;
+        this.leased = item.leased;
     }
 
     public String getName() {
@@ -62,6 +66,18 @@ public abstract class Item {
 
     public static int getNumberOfItems() {
         return Item.numberOfItems;
+    }
+
+    public Boolean getLeased() {
+        return this.leased;
+    }
+
+    public void leaseItem() {
+        this.leased = true;
+    }
+
+    public void returnItem() {
+        this.leased = false;
     }
 
     @Override

@@ -129,7 +129,7 @@ public class Driver {
                                     System.out.print("Invalid item number. Please enter a valid item number.");
                                     index = sc.nextInt();
                                 }
-                                
+
                                 System.out.print("Which information would you like to modify?" +
                                         "\n1. Name" +
                                         "\n2. Author" +
@@ -268,7 +268,7 @@ public class Driver {
                 // Option 2
                 case 2:
 
-                    System.out.print("Please select the opperation you would like to do: " +
+                    System.out.print("Please select the operation you would like to do: " +
                             "\n1. Add a client" +
                             "\n2. Edit a client info" +
                             "\n3. Delete a client" +
@@ -308,27 +308,27 @@ public class Driver {
                                     "\nEnter your choice: ");
                             int editChoice = sc.nextInt();
 
-                            switch(editChoice) {
+                            switch (editChoice) {
                                 case 1:
-                                sc.nextLine();
-                                System.out.print("Please enter a new name: ");
-                                String newName = sc.nextLine();
-                                clientList[indexEdit].setName(newName);
-                                break;
+                                    sc.nextLine();
+                                    System.out.print("Please enter a new name: ");
+                                    String newName = sc.nextLine();
+                                    clientList[indexEdit].setName(newName);
+                                    break;
 
                                 case 2:
-                                sc.nextLine();
-                                System.out.print("Please enter a new phone number: ");
-                                String newPhone = sc.nextLine();
-                                clientList[indexEdit].setPhone(newPhone);
-                                break;
+                                    sc.nextLine();
+                                    System.out.print("Please enter a new phone number: ");
+                                    String newPhone = sc.nextLine();
+                                    clientList[indexEdit].setPhone(newPhone);
+                                    break;
 
                                 case 3:
-                                sc.nextLine();
-                                System.out.print("Please enter a new email: ");
-                                String newEmail = sc.nextLine();
-                                clientList[indexEdit].setEmail(newEmail);
-                                break;
+                                    sc.nextLine();
+                                    System.out.print("Please enter a new email: ");
+                                    String newEmail = sc.nextLine();
+                                    clientList[indexEdit].setEmail(newEmail);
+                                    break;
                             }
 
                             break;
@@ -348,7 +348,7 @@ public class Driver {
                                 // Create a new array that has one less element than the original array
                                 Client[] clientListDel = new Client[clientList.length - 1];
                                 for (int i = 0, j = 0; i < clientList.length; i++) {
-                                    // If i isn't equal to index, add element from library to newLibrary and
+                                    // If i isn't equal to index, add element from clientList to clientListDel and
                                     // increment j
                                     if (i != index) {
                                         clientListDel[j++] = clientList[i];
@@ -356,7 +356,7 @@ public class Driver {
                                 }
                                 clientList = clientListDel;
                             } else { // If the array is empty, display error message
-                                System.out.println("There are no items to remove.");
+                                System.out.println("There are no clients to remove.");
                             }
                             break;
                     }
@@ -365,7 +365,86 @@ public class Driver {
 
                 // Option 3
                 case 3:
+                    System.out.print("Please select the operation you would like to do: " +
+                            "\n1. Lease an item" +
+                            "\n2. Return an item" +
+                            "\nEnter your choice: ");
 
+                    int choiceLease = sc.nextInt();
+                    switch (choiceLease) {
+
+                        // Lease an item
+                        case 1:
+                            sc.nextLine();
+
+                            System.out.print("Please enter the index of the client: ");
+                            int clientLeaseIndex = sc.nextInt();
+
+                            // If the user enters a number that's out of bounds of clientList, keep
+                            // prompting the user until they enter a valid number
+                            while (clientLeaseIndex < 0 || clientLeaseIndex >= clientList.length) {
+                                System.out.print("Invalid client number. Please enter a valid client number.");
+                                clientLeaseIndex = sc.nextInt();
+                            }
+
+                            System.out.print("Please enter the index of the item you would like to lease: ");
+                            int indexLease = sc.nextInt();
+
+                            // If the user enters a number that's out of bounds of library, keep prompting
+                            // the user until they enter a valid number
+                            while (indexLease < 0 || indexLease >= library.length) {
+                                System.out.print("Invalid item number. Please enter a valid item number.");
+                                indexLease = sc.nextInt();
+                            }
+
+                            // If the item is not leased
+                            if (library[indexLease].getLeased() == false) {
+                                // Lease the item
+                                library[indexLease].leaseItem();
+                                // Add leased item to array
+                                clientList[clientLeaseIndex].addLeasedItem(library[indexLease]);
+                            } else {
+                                System.out.println("This item is leased already.");
+                            }
+
+                            break;
+
+                        // Return an item
+                        case 2:
+                            sc.nextLine();
+
+                            System.out.print("Please enter the index of the client: ");
+                            int clientReturnIndex = sc.nextInt();
+
+                            // If the user enters a number that's out of bounds of clientList, keep
+                            // prompting the user until they enter a valid number
+                            while (clientReturnIndex < 0 || clientReturnIndex >= clientList.length) {
+                                System.out.print("Invalid client number. Please enter a valid client number.");
+                                clientReturnIndex = sc.nextInt();
+                            }
+
+                            System.out.print("Please enter the index of the item you would like to return: ");
+                            int indexReturn = sc.nextInt();
+
+                            // If the user enters a number that's out of bounds of library, keep prompting
+                            // the user until they enter a valid number
+                            while (indexReturn < 0 || indexReturn >= library.length) {
+                                System.out.print("Invalid item number. Please enter a valid item number.");
+                                indexReturn = sc.nextInt();
+                            }
+
+                            // If the item is leased
+                            if (library[indexReturn].getLeased() == true) {
+                                // Return the item
+                                library[indexReturn].returnItem();
+                                // Remove leased item from array
+                                clientList[clientReturnIndex].removeLeasedItem(indexReturn);
+                            } else {
+                                System.out.println("This item is not leased.");
+                            }
+
+                            break;
+                    }
                     break;
 
                 // Option 4

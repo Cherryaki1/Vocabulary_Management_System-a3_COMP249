@@ -1,4 +1,5 @@
 package client;
+
 import library.*;
 
 public class Client {
@@ -7,7 +8,6 @@ public class Client {
     private String email;
     private String phone;
     private Item[] leasedItems;
-    
 
     public Client() {
         this.name = "";
@@ -22,7 +22,7 @@ public class Client {
         this.email = email;
         this.phone = phone;
         this.id = "C" + phone;
-        this.leasedItems = new Item[1]; // MAYBE WE INITIALIZE TO NULL IDK
+        this.leasedItems = new Item[0]; // MAYBE WE INITIALIZE TO NULL IDK
     }
 
     public Client(Client client) {
@@ -63,6 +63,30 @@ public class Client {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public void addLeasedItem(Item item) {
+        // Create a deep copy of leasedItems
+        Item[] copyLeasedItems = new Item[this.leasedItems.length];
+        for (int i = 0; i < this.leasedItems.length; i++) {
+            // Storing the elements from leasedItems to copyLeasedItems
+            copyLeasedItems[i] = this.leasedItems[i];
+        }
+        this.leasedItems = copyLeasedItems;
+        this.leasedItems[this.leasedItems.length - 1] = item;
+    }
+
+    public void removeLeasedItem(int index) {
+        // Create a new array that has one less element than the original array
+        Item[] copyLeasedItem = new Item[this.leasedItems.length - 1];
+        for (int i = 0, j = 0; i < this.leasedItems.length; i++) {
+            // If i isn't equal to index, add element from leasedItems to copyLeasedItems
+            // and increment j
+            if (i != index) {
+                copyLeasedItem[j++] = this.leasedItems[i];
+            }
+        }
+        this.leasedItems = copyLeasedItem;
     }
 
     @Override
