@@ -183,30 +183,31 @@ public class Driver {
                             clientList[clientList.length - 1] = new Client(cName, cPhone, cEmail);
                             break;
 
-                        case 2:
+                        case 3:
                             if (clientList != null) {
-                                System.out.print("Enter the number of the item you would like to remove. ");
+                                System.out.print("Enter the index of the client you would like to remove: ");
                                 int index = sc.nextInt();
                                 // If the user enters a number that's out of bounds of the array, keep prompting
                                 // the user until they enter a valid number
-                                while (index < 0 || index >= library.length) {
+                                while (index < 0 || index >= clientList.length) {
                                     System.out.print("Invalid item number. Please enter a valid item number.");
                                     index = sc.nextInt();
                                 }
 
                                 // Create a new array that has one less element than the original array
-                                Item[] newLibrary = new Item[library.length - 1];
-                                for (int i = 0, j = 0; i < library.length; i++) {
+                                Client[] clientListDel = new Client[clientList.length - 1];
+                                for (int i = 0, j = 0; i < clientList.length; i++) {
                                     // If i isn't equal to index, add element from library to newLibrary and
                                     // increment j
                                     if (i != index) {
-                                        newLibrary[j++] = library[i];
+                                        clientListDeep[j++] = clientList[i];
                                     }
                                 }
-                                library = newLibrary;
+                                clientList = clientListDel;
                             } else { // If the array is empty, display error message
                                 System.out.println("There are no items to remove.");
                             }
+                            break;
                     }
 
                     break;
