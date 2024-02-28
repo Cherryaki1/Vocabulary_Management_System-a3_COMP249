@@ -10,7 +10,7 @@ public class Driver {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Client[] clientList = new Client[0];
+        Client[] clientList = new Client[1];
 
         System.out.print("Would you like view the menu (1) or run a predefined scenario (2): ");
         int menuOrPredefined = sc.nextInt();
@@ -20,6 +20,7 @@ public class Driver {
         while (menuOrPredefined != 1 && menuOrPredefined != 2) {
             System.out.print("Invalid choice. Please enter a valid number: ");
             menuOrPredefined = sc.nextInt();
+            System.out.println("");
         }
 
         // Menu
@@ -27,6 +28,7 @@ public class Driver {
 
             System.out.print("Enter the size of the library: ");
             int size = sc.nextInt();
+            System.out.println("");
             Item[] library = new Item[size];
 
             int choice;
@@ -39,10 +41,15 @@ public class Driver {
                 while (choice < 1 || choice > 7) {
                     System.out.print("Invalid choice. Please enter a valid number: ");
                     choice = sc.nextInt();
+                    System.out.println("");
                 }
 
                 switch (choice) {
-                    // Option 1
+                    
+                    //-----------------------------------------------
+                    //                 ITEM MANAGER                 
+                    //-----------------------------------------------
+
                     case 1:
                         System.out.print("1. Add an item" +
                                 "\n2. Delete an item" +
@@ -281,17 +288,23 @@ public class Driver {
 
                         break;
 
-                    // Option 2
+                    //-----------------------------------------------
+                    //                CLIENT MANAGER                 
+                    //-----------------------------------------------
                     case 2:
-
-                        System.out.print("Please select the operation you would like to do: " +
+                        System.out.println("");
+                        System.out.print(
+                                "-----------------------------------------------\n" +
+                                "                 CLIENT MANAGER                \n" +
+                                "-----------------------------------------------\n" +
+                                "Please select the operation you would like to do from the following list " +
                                 "\n1. Add a client" +
                                 "\n2. Edit a client info" +
                                 "\n3. Delete a client" +
                                 "\nEnter your choice: ");
 
                         int clientChoice = sc.nextInt();
-
+                        System.out.println("");
                         switch (clientChoice) {
                             case 1:
                                 sc.nextLine();
@@ -311,13 +324,18 @@ public class Driver {
                                 }
                                 clientList = clientListDeep;
                                 clientList[clientList.length - 1] = new Client(cName, cPhone, cEmail);
+                                System.out.println("Client successfully added!\n");
                                 break;
 
                             case 2:
                                 sc.nextLine();
                                 System.out.print("Please input the index of the client you would like to edit: ");
                                 int indexEdit = sc.nextInt();
-                                System.out.print("Please select which information you would like to edit" +
+                                System.out.print(
+                                        "\n-----------------------------------------------\n" +
+                                        "               EDITING CLIENT " + indexEdit + "                \n" +
+                                        "-----------------------------------------------\n" +
+                                        "Please select which information you would like to edit" +
                                         "\n1. Name" +
                                         "\n2. Phone number" +
                                         "\n3. Email" +
@@ -327,23 +345,29 @@ public class Driver {
                                 switch (editChoice) {
                                     case 1:
                                         sc.nextLine();
+                                        System.out.println("");
                                         System.out.print("Please enter a new name: ");
                                         String newName = sc.nextLine();
                                         clientList[indexEdit].setName(newName);
+                                        System.out.println("Client name has been changed!\n");
                                         break;
 
                                     case 2:
                                         sc.nextLine();
+                                        System.out.println("");
                                         System.out.print("Please enter a new phone number: ");
                                         String newPhone = sc.nextLine();
                                         clientList[indexEdit].setPhone(newPhone);
+                                        System.out.println("Client phone number has been changed!\n");
                                         break;
 
                                     case 3:
                                         sc.nextLine();
+                                        System.out.println("");
                                         System.out.print("Please enter a new email: ");
                                         String newEmail = sc.nextLine();
                                         clientList[indexEdit].setEmail(newEmail);
+                                        System.out.println("Client email has been changed!\n");
                                         break;
                                 }
 
@@ -557,16 +581,18 @@ public class Driver {
     // Displays main menu
     public static void displayMenu() {
         System.out.print(
-                "1. Add an item, delete an item, change information of an item, list all items in a specific category (book, journal, or media), and print all items (from all categories)"
-                        +
-                        "\n2. Add a client, edit a client, and delete a client" +
-                        "\n3. Lease an item to a client and return an item from a client" +
-                        "\n4. Show all items leased by a client" +
-                        "\n5. Show all leased items (by all clients)" +
-                        "\n6. Display the biggest book" +
-                        "\n7. Make a copy of the books array" +
-                        "\n8. Quit" +
-                        "\nEnter your choice: ");
+                "-----------------------------------------------\n" +
+                "                    MAIN MENU                  \n" +
+                "-----------------------------------------------\n" +
+                "1. Managa items" +
+                "\n2. Manage clients"+
+                "\n3. Manage leases" +
+                "\n4. Show all items leased by a client" +
+                "\n5. Show all leased items (by all clients)" +
+                "\n6. Display the biggest book" +
+                "\n7. Make a copy of the books array" +
+                "\n8. Quit" +
+                "\nEnter your choice: ");
     }
 
     public static Item getBiggestBook(Item[] library) {

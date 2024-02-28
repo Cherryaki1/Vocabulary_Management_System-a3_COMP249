@@ -24,7 +24,7 @@ public class Client {
         this.email = email;
         this.phone = phone;
         this.id = "C" + phone;
-        this.leasedItems = new Item[0];
+        this.leasedItems = new Item[1];
     }
 
     // Copy constructor
