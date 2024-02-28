@@ -48,6 +48,41 @@ public class Driver {
                         // Add an item
                         case 1:
 
+                            // If there's enough space in the library
+                            if (Item.getNumberOfItems() < library.length) {
+                                sc.nextLine();
+                                System.out.println("Please provide the information of the item: ");
+                                System.out.print("Name : ");
+                                String name = sc.nextLine();
+                                System.out.print("Author: ");
+                                String author = sc.nextLine();
+                                System.out.print("Year: ");
+                                int year = sc.nextInt();
+                                System.out.print("Type of item: ");
+                                String itemType = sc.next();
+
+                                if (itemType.equalsIgnoreCase("Book")) {
+                                    System.out.print("Number of pages: ");
+                                    int numberOfPages = sc.nextInt();
+                                    // Creating a new book and adding it to the library
+                                    library[Item.getNumberOfItems() + 1] = new Book(name, author, year, numberOfPages);
+                                } else if (itemType.equalsIgnoreCase("Journal")) {
+                                    System.out.print("Volume number: ");
+                                    int volumeNumber = sc.nextInt();
+                                    // Creating a new journal and adding it to the library
+                                    library[Item.getNumberOfItems() + 1] = new Journal(name, author, year,
+                                            volumeNumber);
+                                } else if (itemType.equalsIgnoreCase("Media")) {
+                                    System.out.print("Type: ");
+                                    String type = sc.next();
+                                    // Creating a new media and adding it to the library
+                                    library[Item.getNumberOfItems() + 1] = new Media(name, author, year, type);
+                                }
+
+                            } else {
+                                System.out.println("There isn't enough space in the library.");
+                            }
+
                             break;
 
                         // Delete an item
