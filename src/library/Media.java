@@ -4,23 +4,27 @@ public class Media extends Item {
     private String type;
     private static int numberOfMedia;
 
+    //Default constructor
     public Media() {
         super();
         this.type = "";
         this.id = "M" + ++Media.numberOfMedia;
     }
 
+    // Parameterized constructor
     public Media(String name, String author, int year, String type) {
         super(name, author, year);
         this.type = type;
         this.id = "M" + ++Media.numberOfMedia;
     }
 
+    // Copy constructor
     public Media(Media media) {
         super(media);
         this.id = "M" + ++Media.numberOfMedia;
     }
 
+    // Getters and Setters
     public String getType() {
         return type;
     }

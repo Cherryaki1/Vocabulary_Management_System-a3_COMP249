@@ -9,6 +9,7 @@ public class Client {
     private String phone;
     private Item[] leasedItems;
 
+    // Default constructor
     public Client() {
         this.name = "";
         this.email = "";
@@ -17,14 +18,16 @@ public class Client {
         this.leasedItems = null;
     }
 
+    // Parameterized constructor
     public Client(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.id = "C" + phone;
-        this.leasedItems = new Item[0]; // MAYBE WE INITIALIZE TO NULL IDK
+        this.leasedItems = new Item[0];
     }
 
+    // Copy constructor
     public Client(Client client) {
         this.name = client.name;
         this.email = client.email;
@@ -33,6 +36,7 @@ public class Client {
         this.leasedItems = client.leasedItems;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -91,15 +95,18 @@ public class Client {
 
     public String displayLeasedItems() {
         String leasedList = "";
-        for (int i = 0; i < leasedItems.length;i++) {
-            leasedList += leasedItems[i] + "\n";
+        for (int i = 0; i < this.leasedItems.length; i++) {
+            leasedList += this.leasedItems[i] + "\n";
         }
         return leasedList;
     }
 
     @Override
     public String toString() {
-        return "";
+        return "Name: " + this.name + "\n"
+                + "ID: " + this.id + "\n"
+                + "Email: " + this.email + "\n"
+                + "Phone number: " + this.phone;
     }
 
     public boolean equals(Object otherObject) {

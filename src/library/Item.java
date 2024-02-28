@@ -8,6 +8,7 @@ public abstract class Item {
     private static int numberOfItems;
     protected boolean leased;
 
+    // Default constructor
     public Item() {
         this.name = "";
         this.author = "";
@@ -16,6 +17,7 @@ public abstract class Item {
         this.leased = false;
     }
 
+    // Parameterized constructor
     public Item(String name, String author, int year) {
         this.name = name;
         this.author = author;
@@ -24,6 +26,7 @@ public abstract class Item {
         this.leased = false;
     }
 
+    // Copy constructor
     public Item(Item item) {
         this.name = item.name;
         this.author = item.author;
@@ -32,6 +35,7 @@ public abstract class Item {
         this.leased = item.leased;
     }
 
+    //Getters and Setters
     public String getName() {
         return name;
     }
