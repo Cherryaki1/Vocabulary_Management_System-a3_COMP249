@@ -33,6 +33,10 @@ public class Media extends Item {
         this.type = type;
     }
 
+    public static int getNumberOfMedia() {
+        return Media.getNumberOfMedia();
+    }
+
     @Override
     public String toString() {
         return super.toString() + "\n" 

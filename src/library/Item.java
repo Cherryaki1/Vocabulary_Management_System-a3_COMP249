@@ -84,6 +84,10 @@ public abstract class Item {
         this.leased = false;
     }
 
+    public static void deleteItem() {
+        Item.numberOfItems--;
+    }
+
     @Override
     public String toString() {
         return "Name: " + this.name + "\n"

@@ -33,6 +33,10 @@ public class Journal extends Item {
         this.volumeNumber = volumeNumber;
     }
 
+    public static int getNumberOfJournals() {
+        return Journal.numberOfJournals;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "\n" 
