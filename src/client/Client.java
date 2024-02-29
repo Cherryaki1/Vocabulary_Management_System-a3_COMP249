@@ -24,7 +24,7 @@ public class Client {
         this.email = email;
         this.phone = phone;
         this.id = "C" + phone;
-        this.leasedItems = new Item[1];
+        this.leasedItems = new Item[0];
     }
 
     // Copy constructor
@@ -69,10 +69,14 @@ public class Client {
         this.phone = phone;
     }
 
+    public Item[] getLeasedItems() {
+        return this.leasedItems;
+    }
+    
     public void addLeasedItem(Item item) {
         // Create a deep copy of leasedItems
-        Item[] copyLeasedItems = new Item[this.leasedItems.length];
-        for (int i = 0; i < this.leasedItems.length; i++) {
+        Item[] copyLeasedItems = new Item[this.leasedItems.length+1];
+        for (int i = 0; i < leasedItems.length; i++) {
             // Storing the elements from leasedItems to copyLeasedItems
             copyLeasedItems[i] = this.leasedItems[i];
         }
@@ -108,6 +112,7 @@ public class Client {
                 + "Email: " + this.email + "\n"
                 + "Phone number: " + this.phone;
     }
+
 
     public boolean equals(Object otherObject) {
         if (otherObject == null) {

@@ -10,7 +10,7 @@ public class Driver {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Client[] clientList = new Client[1];
+        Client[] clientList = new Client[0];
 
         System.out.print("Would you like view the menu (1) or run a predefined scenario (2): ");
         int menuOrPredefined = sc.nextInt();
@@ -38,30 +38,30 @@ public class Driver {
 
                 // If the user does not enter a number between 1 and 7, keep prompting the user
                 // until they enter a valid option
-                while (choice < 1 || choice > 7) {
+                while (choice < 1 || choice > 8) {
                     System.out.print("Invalid choice. Please enter a valid number: ");
                     choice = sc.nextInt();
                     System.out.println("");
                 }
 
                 switch (choice) {
-                    
-                    //-----------------------------------------------
-                    //                 ITEM MANAGER                 
-                    //-----------------------------------------------
+
+                    // -----------------------------------------------
+                    // ITEM MANAGER
+                    // -----------------------------------------------
 
                     case 1:
                         System.out.print(
                                 "-----------------------------------------------\n" +
-                                "                  ITEM MANAGER                 \n" +
-                                "-----------------------------------------------\n" +
-                                "Please select the operation you would like to do from the following list " +
-                                "\n1. Add an item" +
-                                "\n2. Delete an item" +
-                                "\n3. Change information of an item" +
-                                "\n4. List all items in a specific category (book, journal, or media)" +
-                                "\n5. Print all items (from all categories)" +
-                                "\nEnter your choice: ");
+                                        "                  ITEM MANAGER                 \n" +
+                                        "-----------------------------------------------\n" +
+                                        "Please select the operation you would like to do from the following list " +
+                                        "\n1. Add an item" +
+                                        "\n2. Delete an item" +
+                                        "\n3. Change information of an item" +
+                                        "\n4. List all items in a specific category (book, journal, or media)" +
+                                        "\n5. Print all items (from all categories)" +
+                                        "\nEnter your choice: ");
 
                         choice = sc.nextInt();
                         System.out.println("");
@@ -120,21 +120,15 @@ public class Driver {
 
                                 // If the array isn't empty
                                 if (library != null) {
-                                    System.out.print("Enter the index of the item you would like to remove: ");
-                                    int index = sc.nextInt();
-                                    // If the user enters a number that's out of bounds of the array, 
-                                    // keep prompting the user until they enter a valid number
-                                    while (index < 0 || index >= library.length) {
-                                        System.out.print("Invalid item number. Please enter a valid item number.");
-                                        index = sc.nextInt();
-                                    }
+                                    System.out.print("Enter the item ID you would like to remove: ");
+                                    String id = sc.nextLine();
 
                                     // Create a new array that has one less element than the original array
                                     Item[] newLibrary = new Item[library.length - 1];
                                     for (int i = 0, j = 0; i < library.length; i++) {
-                                        // If i isn't equal to index, add element from library to newLibrary and
-                                        // increment j
-                                        if (i != index) {
+                                        // If the ID of the current element isn't equal to the ID of the item to remove,
+                                        // add element from library to newLibrary and increment j
+                                        if (!(library[i].equals(id))) {
                                             newLibrary[j++] = library[i];
                                         }
                                     }
@@ -150,14 +144,15 @@ public class Driver {
 
                                 // If the library isn't empty
                                 if (library != null) {
-                                    System.out.print("Enter the number of the item that you would like to edit: ");
-                                    int index = sc.nextInt();
+                                    System.out.print("Enter the ID of the item that you would like to edit: ");
+                                    String id = sc.nextLine();
 
-                                    // If the user enters a number that's out of bounds of the array, 
-                                    // keep prompting the user until they enter a valid number
-                                    while ((index < 0 || index >= library.length)) {
-                                        System.out.print("Invalid item number. Please enter a valid item number.");
-                                        index = sc.nextInt();
+                                    int index = 0;
+                                    for (int i = 0; i < library.length; i++) {
+                                        if (library[i] != null && library[i].getId().equals(id)) {
+                                            index = i;
+                                            break;
+                                        }
                                     }
 
                                     System.out.print("Which information would you like to modify?" +
@@ -166,7 +161,7 @@ public class Driver {
                                             "\n3. Year" +
                                             "\n4. Number of pages (Book)" +
                                             "\n5. Volume number (Journal)" +
-                                            "\n6. Type (Media)");
+                                            "\n6. Type (Media) ");
 
                                     int information = sc.nextInt();
                                     switch (information) {
@@ -296,20 +291,20 @@ public class Driver {
 
                         break;
 
-                    //-----------------------------------------------
-                    //                CLIENT MANAGER                 
-                    //-----------------------------------------------
+                    // -----------------------------------------------
+                    // CLIENT MANAGER
+                    // -----------------------------------------------
                     case 2:
                         System.out.println("");
                         System.out.print(
                                 "-----------------------------------------------\n" +
-                                "                 CLIENT MANAGER                \n" +
-                                "-----------------------------------------------\n" +
-                                "Please select the operation you would like to do from the following list " +
-                                "\n1. Add a client" +
-                                "\n2. Edit a client info" +
-                                "\n3. Delete a client" +
-                                "\nEnter your choice: ");
+                                        "                 CLIENT MANAGER                \n" +
+                                        "-----------------------------------------------\n" +
+                                        "Please select the operation you would like to do from the following list " +
+                                        "\n1. Add a client" +
+                                        "\n2. Edit a client info" +
+                                        "\n3. Delete a client" +
+                                        "\nEnter your choice: ");
 
                         int clientChoice = sc.nextInt();
                         System.out.println("");
@@ -325,7 +320,7 @@ public class Driver {
                                 String cEmail = sc.nextLine();
 
                                 // Create a deep copy of client list
-                                Client[] clientListDeep = new Client[clientList.length];
+                                Client[] clientListDeep = new Client[clientList.length + 1];
                                 for (int i = 0; i < clientList.length; i++) {
                                     // Storing the elements from books to copyBooks
                                     clientListDeep[i] = clientList[i];
@@ -337,26 +332,37 @@ public class Driver {
 
                             case 2:
                                 sc.nextLine();
-                                System.out.print("Please input the index of the client you would like to edit: ");
-                                int indexEdit = sc.nextInt();
+                                System.out.print("Please input the ID of the client you would like to edit: ");
+                                String idEdit = sc.nextLine();
                                 System.out.print(
-                                        "\n-----------------------------------------------\n" +
-                                        "               EDITING CLIENT " + indexEdit + "                \n" +
-                                        "-----------------------------------------------\n" +
-                                        "Please select which information you would like to edit" +
-                                        "\n1. Name" +
-                                        "\n2. Phone number" +
-                                        "\n3. Email" +
-                                        "\nEnter your choice: ");
+                                                "\n-----------------------------------------------\n" +
+                                                "                 EDITING CLIENT                \n" +
+                                                "-----------------------------------------------\n" +
+                                                "Please select which information you would like to edit" +
+                                                "\n1. Name" +
+                                                "\n2. Phone number" +
+                                                "\n3. Email" +
+                                                "\nEnter your choice: ");
                                 int editChoice = sc.nextInt();
 
+                                int idDelete = 0;
+                                    for (int i = 0; i < clientList.length; i++) {
+                                        if (clientList[i] != null && clientList[i].getId().equals(idEdit)) {
+                                            idDelete = i;
+                                            break;
+                                        }
+                                    }
+
                                 switch (editChoice) {
+
+                                    
+
                                     case 1:
                                         sc.nextLine();
                                         System.out.println("");
                                         System.out.print("Please enter a new name: ");
                                         String newName = sc.nextLine();
-                                        clientList[indexEdit].setName(newName);
+                                        clientList[idDelete].setName(newName);
                                         System.out.println("Client name has been changed!\n");
                                         break;
 
@@ -365,7 +371,7 @@ public class Driver {
                                         System.out.println("");
                                         System.out.print("Please enter a new phone number: ");
                                         String newPhone = sc.nextLine();
-                                        clientList[indexEdit].setPhone(newPhone);
+                                        clientList[idDelete].setPhone(newPhone);
                                         System.out.println("Client phone number has been changed!\n");
                                         break;
 
@@ -374,7 +380,7 @@ public class Driver {
                                         System.out.println("");
                                         System.out.print("Please enter a new email: ");
                                         String newEmail = sc.nextLine();
-                                        clientList[indexEdit].setEmail(newEmail);
+                                        clientList[idDelete].setEmail(newEmail);
                                         System.out.println("Client email has been changed!\n");
                                         break;
                                 }
@@ -384,13 +390,15 @@ public class Driver {
                             case 3:
                                 sc.nextLine();
                                 if (clientList != null) {
-                                    System.out.print("Enter the index of the client you would like to remove: ");
-                                    int index = sc.nextInt();
-                                    // If the user enters a number that's out of bounds of the array, keep prompting
-                                    // the user until they enter a valid number
-                                    while (index < 0 || index >= clientList.length) {
-                                        System.out.print("Invalid client index. Please enter a valid client index.");
-                                        index = sc.nextInt();
+                                    System.out.print("Enter the ID of the client you would like to remove: ");
+                                    String idDel = sc.nextLine();
+                                    
+                                    idDelete = 0;
+                                    for (int i = 0; i < clientList.length; i++) {
+                                        if (clientList[i] != null && clientList[i].getId().equals(idDel)) {
+                                            idDelete = i;
+                                            break;
+                                        }
                                     }
 
                                     // Create a new array that has one less element than the original array
@@ -398,31 +406,36 @@ public class Driver {
                                     for (int i = 0, j = 0; i < clientList.length; i++) {
                                         // If i isn't equal to index, add element from clientList to clientListDel and
                                         // increment j
-                                        if (i != index) {
+                                        if (i != idDelete) {
                                             clientListDel[j++] = clientList[i];
                                         }
                                     }
                                     clientList = clientListDel;
+
+                                    for (Item item : clientList[idDelete].getLeasedItems()) {
+                                        item.returnItem();
+                                    }
+
                                 } else { // If the array is empty, display error message
                                     System.out.println("There are no clients to remove.");
                                 }
-                                break;
+
                         }
 
                         break;
 
-                    //-----------------------------------------------
-                    //                 LEASE MANAGER                 
-                    //-----------------------------------------------
+                    // -----------------------------------------------
+                    // LEASE MANAGER
+                    // -----------------------------------------------
                     case 3:
                         System.out.print(
-                                "-----------------------------------------------\n" +
-                                "                  LEASE MANAGER                \n" +
-                                "-----------------------------------------------\n" +
-                                "Please select the operation you would like to do from the following list " +
-                                "\n1. Lease an item" +
-                                "\n2. Return an item" +
-                                "\nEnter your choice: ");
+                                        "-----------------------------------------------\n" +
+                                        "                  LEASE MANAGER                \n" +
+                                        "-----------------------------------------------\n" +
+                                        "Please select the operation you would like to do from the following list " +
+                                        "\n1. Lease an item" +
+                                        "\n2. Return an item" +
+                                        "\nEnter your choice: ");
 
                         int choiceLease = sc.nextInt();
                         switch (choiceLease) {
@@ -431,32 +444,33 @@ public class Driver {
                             case 1:
                                 sc.nextLine();
 
-                                System.out.print("Please enter the index of the client: ");
-                                int clientLeaseIndex = sc.nextInt();
+                                System.out.print("Please enter the ID of the client: ");
+                                String idClient = sc.nextLine();
 
-                                // If the user enters a number that's out of bounds of clientList, keep
-                                // prompting the user until they enter a valid number
-                                while (clientLeaseIndex < 0 || clientLeaseIndex >= clientList.length) {
-                                    System.out.print("Invalid client number. Please enter a valid client number.");
-                                    clientLeaseIndex = sc.nextInt();
-                                }
+                                System.out.print("Please enter the ID of the item you would like to lease: ");
+                                String idItem = sc.nextLine();
 
-                                System.out.print("Please enter the index of the item you would like to lease: ");
-                                int indexLease = sc.nextInt();
+                                int idClientIndex = 0;
+                                    for (int i = 0; i < clientList.length; i++) {
+                                        if (clientList[i] != null && clientList[i].getId().equals(idClient)) {
+                                            idClientIndex = i;
+                                            break;
+                                        }
+                                    }
 
-                                // If the user enters a number that's out of bounds of library, keep prompting
-                                // the user until they enter a valid number
-                                while (indexLease < 0 || indexLease >= library.length) {
-                                    System.out.print("Invalid item number. Please enter a valid item number.");
-                                    indexLease = sc.nextInt();
-                                }
-
+                                int idItemLease = 0;
+                                    for (int i = 0; i < library.length; i++) {
+                                        if (library[i] != null && library[i].getId().equals(idItem)) {
+                                            idItemLease = i;
+                                            break;
+                                        }
+                                    }
                                 // If the item is not leased
-                                if (library[indexLease].getLeased() == false) {
+                                if (library[idItemLease].getLeased() == false) {
                                     // Lease the item
-                                    library[indexLease].leaseItem();
+                                    library[idItemLease].leaseItem();
                                     // Add leased item to array
-                                    clientList[clientLeaseIndex].addLeasedItem(library[indexLease]);
+                                    clientList[idClientIndex].addLeasedItem(library[idItemLease]);
                                 } else {
                                     System.out.println("This item is leased already.");
                                 }
@@ -467,25 +481,27 @@ public class Driver {
                             case 2:
                                 sc.nextLine();
 
-                                System.out.print("Please enter the index of the client: ");
-                                int clientReturnIndex = sc.nextInt();
+                                System.out.print("Please enter the ID of the client: ");
+                                String clientReturnId = sc.nextLine();
 
-                                // If the user enters a number that's out of bounds of clientList, keep
-                                // prompting the user until they enter a valid number
-                                while (clientReturnIndex < 0 || clientReturnIndex >= clientList.length) {
-                                    System.out.print("Invalid client number. Please enter a valid client number.");
-                                    clientReturnIndex = sc.nextInt();
-                                }
+                                System.out.print("Please enter the ID of the item you would like to return: ");
+                                String idItemReturn = sc.nextLine();
 
-                                System.out.print("Please enter the index of the item you would like to return: ");
-                                int indexReturn = sc.nextInt();
+                                int indexReturn = 0;
+                                    for (int i = 0; i < library.length; i++) {
+                                        if (library[i] != null && library[i].getId().equals(idItemReturn)) {
+                                            indexReturn = i;
+                                            break;
+                                        }
+                                    }
 
-                                // If the user enters a number that's out of bounds of library, keep prompting
-                                // the user until they enter a valid number
-                                while (indexReturn < 0 || indexReturn >= library.length) {
-                                    System.out.print("Invalid item number. Please enter a valid item number.");
-                                    indexReturn = sc.nextInt();
-                                }
+                                int clientReturnIndex = 0;
+                                    for (int i = 0; i < clientList.length; i++) {
+                                        if (clientList[i] != null && clientList[i].getId().equals(clientReturnId)) {
+                                            clientReturnIndex = i;
+                                            break;
+                                        }
+                                    }
 
                                 // If the item is leased
                                 if (library[indexReturn].getLeased() == true) {
@@ -504,10 +520,16 @@ public class Driver {
                     // Option 4
                     case 4:
                         sc.nextLine();
-                        System.out.print("Please input the index of the client you would like to display: ");
-                        int indexClient = sc.nextInt();
+                        System.out.print("Please input the ID of the client you would like to display: ");
+                        String indexClient = sc.nextLine();
                         System.out.println("Here is the list of all the items listed by the selected client: ");
-                        System.out.println(clientList[indexClient].displayLeasedItems() + "\n");
+                        for (int i = 0; i < clientList.length; i++) {
+                            if (clientList[i] != null && clientList[i].getId().equals(indexClient)) {
+                                for (Item item : clientList[i].getLeasedItems()) {
+                                    System.out.println(item + "\n");
+                                }
+                            }
+                        }
                         break;
 
                     // Option 5
@@ -515,9 +537,9 @@ public class Driver {
                         sc.nextLine();
                         System.out.println("Here is the list of all leased items: ");
                         for (int i = 0; i < library.length; i++) {
-                            if (library[i]!= null) {
-                                if (library[i].getLeased()){
-                                System.out.println(library[i] + "\n");
+                            if (library[i] != null) {
+                                if (library[i].getLeased()) {
+                                    System.out.println(library[i] + "\n");
                                 }
                             }
                         }
@@ -525,7 +547,8 @@ public class Driver {
 
                     // Option 6
                     case 6:
-                        System.out.println("The information of the biggest book is as follow\n" + getBiggestBook(library));
+                        System.out.println(
+                                "The information of the biggest book is as follow\n" + getBiggestBook(library));
                         break;
 
                     // Option 7
@@ -534,16 +557,15 @@ public class Driver {
                         Book[] booksList = new Book[Book.getNumberOfBooks()];
                         for (int i = 0, j = 0; i < library.length; i++) {
                             // If the item is a book
-                            if (library[i]!=null) {
-                            if ((library[i].getId()).charAt(0) == ('B')) {
-                                booksList[j++] = (Book) library[i];
+                            if (library[i] != null) {
+                                if ((library[i].getId()).charAt(0) == ('B')) {
+                                    booksList[j++] = (Book) library[i];
+                                }
                             }
-                        }
                         }
                         Book[] copyBooksArray = copyBooks(booksList);
                         System.out.println("Copy successful!\n");
                         break;
-
 
                 }
 
@@ -600,17 +622,17 @@ public class Driver {
     public static void displayMenu() {
         System.out.print(
                 "-----------------------------------------------\n" +
-                "                    MAIN MENU                  \n" +
-                "-----------------------------------------------\n" +
-                "1. Manage items" +
-                "\n2. Manage clients"+
-                "\n3. Manage leases" +
-                "\n4. Show all items leased by a client" +
-                "\n5. Show all leased items (by all clients)" +
-                "\n6. Display the biggest book" +
-                "\n7. Make a copy of the books array" +
-                "\n8. Quit" +
-                "\nEnter your choice: ");
+                        "                    MAIN MENU                  \n" +
+                        "-----------------------------------------------\n" +
+                        "1. Manage items" +
+                        "\n2. Manage clients" +
+                        "\n3. Manage leases" +
+                        "\n4. Show all items leased by a client" +
+                        "\n5. Show all leased items (by all clients)" +
+                        "\n6. Display the biggest book" +
+                        "\n7. Make a copy of the books array" +
+                        "\n8. Quit" +
+                        "\nEnter your choice: ");
     }
 
     public static Item getBiggestBook(Item[] library) {
@@ -620,14 +642,14 @@ public class Driver {
             // If the number of pages of the current book is higher than the ones of
             // biggestBook
 
-            if (library[i]!=null){
-            if ((library[i].getId()).charAt(0) == ('B')) {
-                if (((Book) library[i]).getNumberOfPages() > biggestBook.getNumberOfPages()) {
-                    // Update biggestBook with the book with the highest number of pages
-                    biggestBook = (Book) library[i];
+            if (library[i] != null) {
+                if ((library[i].getId()).charAt(0) == ('B')) {
+                    if (((Book) library[i]).getNumberOfPages() > biggestBook.getNumberOfPages()) {
+                        // Update biggestBook with the book with the highest number of pages
+                        biggestBook = (Book) library[i];
+                    }
                 }
             }
-        }
         }
 
         return biggestBook;
