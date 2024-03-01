@@ -1,3 +1,12 @@
+//-------------------------------------------------------------------------------------
+// Assignment 1
+// Part 2
+// Written by: Botao Yang (40213554) and Valerie Nguyen (40284261)
+//
+// This program lets library employees manage all the items in the
+// library (book, journal, and media), clients, and leased/returned items from clients. 
+//-------------------------------------------------------------------------------------
+
 package library;
 
 public class Book extends Item {
@@ -17,20 +26,24 @@ public class Book extends Item {
         this.numberOfPages = numberOfPages;
         this.id = "B" + ++Book.numberOfBooks;
     }
-    
-    //Copy constructor
+
+    // Copy constructor
     public Book(Book book) {
         super(book);
+        this.numberOfPages = book.numberOfPages;
         this.id = "B" + ++Book.numberOfBooks;
     }
 
-    //Getters and Setters
+    // Getters and Setters
     public int getNumberOfPages() {
         return numberOfPages;
     }
 
     public void setNumberOfPages(int numberOfPages) {
-        this.numberOfPages = numberOfPages;
+        if (numberOfPages < 0) {
+            this.numberOfPages = 0;
+        } else
+            this.numberOfPages = numberOfPages;
     }
 
     public static int getNumberOfBooks() {
@@ -39,8 +52,8 @@ public class Book extends Item {
 
     @Override
     public String toString() {
-        return super.toString() + "\n" 
-        + "Number of pages: " + this.numberOfPages;
+        return super.toString() + "\n"
+                + "Number of pages: " + this.numberOfPages;
     }
 
     public boolean equals(Object otherObject) {

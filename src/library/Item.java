@@ -1,3 +1,12 @@
+//-------------------------------------------------------------------------------------
+// Assignment 1
+// Part 2
+// Written by: Botao Yang (40213554) and Valerie Nguyen (40284261)
+//
+// This program lets library employees manage all the items in the
+// library (book, journal, and media), clients, and leased/returned items from clients. 
+//-------------------------------------------------------------------------------------
+
 package library;
 
 public abstract class Item {

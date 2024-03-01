@@ -1,3 +1,12 @@
+//-------------------------------------------------------------------------------------
+// Assignment 1
+// Part 2
+// Written by: Botao Yang (40213554) and Valerie Nguyen (40284261)
+//
+// This program lets library employees manage all the items in the
+// library (book, journal, and media), clients, and leased/returned items from clients. 
+//-------------------------------------------------------------------------------------
+
 package driver;
 
 import java.util.Scanner;
@@ -13,6 +22,9 @@ public class Driver {
 
         Client[] clientList = new Client[0];
 
+        // WELCOME MESSAGE
+        System.out.println(
+                "Code written by Botao Yang (40213554) and Valerie Nguyen (40284261)\nWelcome to FunReadings Library Management System.");
         System.out.print("Would you like view the menu (1) or run a predefined scenario (2): ");
         int menuOrPredefined = sc.nextInt();
 
@@ -197,6 +209,8 @@ public class Driver {
                                     }
 
                                     switch (information) {
+
+                                        // Modifying name
                                         case 1:
                                             sc.nextLine();
                                             System.out.print("Name: ");
@@ -205,6 +219,7 @@ public class Driver {
                                             System.out.println("Name changed successfully.");
                                             break;
 
+                                        // Modifying author
                                         case 2:
                                             sc.nextLine();
                                             System.out.print("Author: ");
@@ -213,6 +228,7 @@ public class Driver {
                                             System.out.println("Author changed successfully.");
                                             break;
 
+                                        // Modifying year
                                         case 3:
                                             System.out.print("Year: ");
                                             int year = sc.nextInt();
@@ -220,6 +236,7 @@ public class Driver {
                                             System.out.println("Year changed successfully.");
                                             break;
 
+                                        // Modifying number of pages
                                         case 4:
                                             // If the item the user is trying to modify is a book
                                             if (library[indexItemEdit] instanceof Book) {
@@ -233,6 +250,7 @@ public class Driver {
                                             }
                                             break;
 
+                                        // Modifying volume number
                                         case 5:
                                             // If the item the user is trying to modify is a journal
                                             if (library[indexItemEdit] instanceof Journal) {
@@ -246,6 +264,7 @@ public class Driver {
                                             }
                                             break;
 
+                                        // Modifying type
                                         case 6:
                                             sc.nextLine();
                                             // If the item the user is trying to modify is a media
@@ -288,8 +307,7 @@ public class Driver {
                                                 // Go through every element in the array
                                                 for (Item item : library) {
                                                     // If the current item isn't null and is a Book, print information
-                                                    // of
-                                                    // item
+                                                    // of item
                                                     if (item != null && item instanceof Book) {
                                                         System.out.println(item + "\n");
                                                     }
@@ -384,6 +402,7 @@ public class Driver {
 
                         System.out.println("");
                         switch (clientChoice) {
+                            // Add a client
                             case 1:
                                 sc.nextLine();
                                 System.out.println("Please provide the client's information:");
@@ -406,6 +425,7 @@ public class Driver {
                                 System.out.println("Client successfully added!\n");
                                 break;
 
+                            // Edit a client
                             case 2:
                                 sc.nextLine();
                                 System.out.print("Please input the ID of the client you would like to edit: ");
@@ -432,6 +452,7 @@ public class Driver {
 
                                 switch (editChoice) {
 
+                                    // Edit name
                                     case 1:
                                         sc.nextLine();
                                         System.out.println("");
@@ -441,6 +462,7 @@ public class Driver {
                                         System.out.println("Client name has been changed!\n");
                                         break;
 
+                                    // Edit phone number
                                     case 2:
                                         sc.nextLine();
                                         System.out.println("");
@@ -450,6 +472,7 @@ public class Driver {
                                         System.out.println("Client phone number has been changed!\n");
                                         break;
 
+                                    // Edit email
                                     case 3:
                                         sc.nextLine();
                                         System.out.println("");
@@ -462,6 +485,7 @@ public class Driver {
 
                                 break;
 
+                            // Remove a client
                             case 3:
                                 sc.nextLine();
                                 // If the array of clients isn't empty
@@ -531,8 +555,8 @@ public class Driver {
                                     // If clientList isn't empty
                                     if (clientList.length != 0) {
                                         System.out.print("Please enter the ID of the client: ");
-                                        String idClient = sc.next(); 
-                                        
+                                        String idClient = sc.next();
+
                                         // Find the index of the client in clientList
                                         int idClientIndex = findIndexClient(clientList, idClient, sc);
 
@@ -568,7 +592,7 @@ public class Driver {
                                 if (clientList.length != 0) {
                                     System.out.print("Please enter the ID of the client: ");
                                     String clientReturnId = sc.next();
-                                    
+
                                     // Find the index of the client in clientList
                                     int clientReturnIndex = findIndexClient(clientList, clientReturnId, sc);
 
@@ -721,21 +745,21 @@ public class Driver {
 
             // Predefined/Hard-coded scenario
 
-            Book b1 = new Book();
-            Book b2 = new Book();
-            Book b3 = new Book();
+            Book b1 = new Book("Book 1", "Author 1", 2024, 349);
+            Book b2 = new Book("Book 2", "Author 2", 2024, 242);
+            Book b3 = new Book(b1);
 
-            Journal j1 = new Journal();
-            Journal j2 = new Journal();
-            Journal j3 = new Journal();
+            Journal j1 = new Journal("Journal 1", "Author 1", 2021, 1);
+            Journal j2 = new Journal("Journal 2", "Author 2", 2022, 2);
+            Journal j3 = new Journal(j2);
 
-            Media m1 = new Media();
-            Media m2 = new Media();
-            Media m3 = new Media();
+            Media m1 = new Media("Media 1", "Author 1", 2003, "audio");
+            Media m2 = new Media("Media 2", "Author 2", 2014, "interactive");
+            Media m3 = new Media("Media 3", "Author 3", 2012, "video");
 
-            Client c1 = new Client();
-            Client c2 = new Client();
-            Client c3 = new Client();
+            Client c1 = new Client("Client 1", "email1@gmail.com", "514-424-4646");
+            Client c2 = new Client("Client 2", "email2@gmail.com", "514-753-2584");
+            Client c3 = new Client("Client 2", "email3@gmail.com", "514-363-7542");
 
             Item[] predefinedLibrary = { b1, b2, b3, j1, j2, j3, m1, m2, m3 };
             Book[] books = { b1, b2, b3 };
@@ -744,13 +768,17 @@ public class Driver {
 
             // Display information of each item
             for (Item item : predefinedLibrary) {
-                System.out.println(item);
+                System.out.println(item + "\n");
             }
 
             // Testing the equality of the items
+            System.out.println("m1 equal to j1? : " + m1.equals(j1));
+            System.out.println("b1 equal to b3? : " + b1.equals(b3));
+            System.out.println("b1 equal to b2? : " + b1.equals(b2));
 
             // Book with the highest number of pages
-            System.out.println(getBiggestBook(books));
+            System.out.println(
+                    "\nThe book with the highest number of pages is " + getBiggestBook(books).getName() + "\n");
 
             // Copy of books array with the array of Media
             try {
@@ -765,7 +793,7 @@ public class Driver {
 
     }
 
-    // Displays main menu
+    // Display main menu
     public static void displayMenu() {
         System.out.print(
                 "-----------------------------------------------\n" +
@@ -782,6 +810,7 @@ public class Driver {
                         "\nEnter your choice: ");
     }
 
+    // Find the book with the highest number of pages
     public static Item getBiggestBook(Book[] books) {
         Book biggestBook = (Book) books[0];
 
@@ -800,6 +829,7 @@ public class Driver {
         return biggestBook;
     }
 
+    // Make a copy of the array of books
     public static Book[] copyBooks(Item[] books) {
         // If the array is not a Book object, throw exception
         if (!(books instanceof Book[])) {

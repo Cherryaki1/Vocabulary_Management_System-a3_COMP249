@@ -1,3 +1,12 @@
+//-------------------------------------------------------------------------------------
+// Assignment 1
+// Part 2
+// Written by: Botao Yang (40213554) and Valerie Nguyen (40284261)
+//
+// This program lets library employees manage all the items in the
+// library (book, journal, and media), clients, and leased/returned items from clients. 
+//-------------------------------------------------------------------------------------
+
 package library;
 
 public class Media extends Item {
@@ -21,6 +30,7 @@ public class Media extends Item {
     // Copy constructor
     public Media(Media media) {
         super(media);
+        this.type = media.type;
         this.id = "M" + ++Media.numberOfMedia;
     }
 
