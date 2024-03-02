@@ -469,6 +469,8 @@ public class Driver {
                                         System.out.print("Please enter a new phone number: ");
                                         String newPhone = sc.nextLine();
                                         clientList[indexClientEdit].setPhone(newPhone);
+                                        // If a client changes their phone number, their ID changes as well
+                                        clientList[indexClientEdit].setId("C" + newPhone);
                                         System.out.println("Client phone number has been changed!\n");
                                         break;
 
