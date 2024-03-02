@@ -813,7 +813,7 @@ public class Driver {
     }
 
     // Find the book with the highest number of pages
-    public static Item getBiggestBook(Book[] books) {
+    public static Book getBiggestBook(Book[] books) {
         Book biggestBook = (Book) books[0];
 
         for (int i = 1; i < books.length; i++) {
