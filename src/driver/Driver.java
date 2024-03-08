@@ -637,13 +637,11 @@ public class Driver {
                             if (clientList[indexClientDisplay].getLeasedItems().length != 0) {
 
                                 System.out.println("Here is the list of all the items listed by the selected client: ");
-                                for (int i = 0; i < clientList.length; i++) {
-                                    if (i == indexClientDisplay) {
-                                        for (Item item : clientList[i].getLeasedItems()) {
-                                            System.out.println(item + "\n");
-                                        }
-                                    }
+
+                                for (Item item : clientList[indexClientDisplay].getLeasedItems()) {
+                                    System.out.println(item + "\n");
                                 }
+
                             } else {
                                 System.out.println("This client has no leased item.");
                             }
@@ -661,24 +659,19 @@ public class Driver {
 
                             boolean isLeased = false;
 
-                            // Check if there is at least one leased item
+                            // If there is at least one leased item in the library
+
+                            System.out.println("Here is the list of all leased items: ");
                             for (int i = 0; i < library.length; i++) {
                                 if (library[i] != null && library[i].getLeased()) {
                                     isLeased = true;
-                                    break;
+                                    System.out.println(library[i] + "\n");
                                 }
+
                             }
 
-                            // If there is at least one leased item in the library
-                            if (isLeased) {
-                                System.out.println("Here is the list of all leased items: ");
-                                for (int i = 0; i < library.length; i++) {
-                                    if (library[i] != null && library[i].getLeased()) {
-                                        System.out.println(library[i] + "\n");
-                                    }
-                                }
-                            } else {
-                                System.out.println("There are no leased items.");
+                            if (!isLeased) {
+                                System.out.println("There are no items that are leased.");
                             }
                         } else {
                             System.out.println("The library is empty.");
@@ -715,7 +708,7 @@ public class Driver {
                         // If the library is not empty
                         if (!emptyLibrary(library)) {
                             // If there is at least one book in the library
-                            if (Book.getNumberOfBooks() >= 0) {
+                            if (Book.getNumberOfBooks() >= 1) {
                                 // Creating an array of books
                                 Book[] booksList = new Book[Book.getNumberOfBooks()];
                                 for (int i = 0, j = 0; i < library.length; i++) {
@@ -814,7 +807,7 @@ public class Driver {
 
     // Find the book with the highest number of pages
     public static Book getBiggestBook(Book[] books) {
-        Book biggestBook = (Book) books[0];
+        Book biggestBook = books[0];
 
         for (int i = 1; i < books.length; i++) {
             // Check if the item is not null
@@ -834,7 +827,7 @@ public class Driver {
     // Make a copy of the array of books
     public static Book[] copyBooks(Item[] books) {
         // If the array is not a Book object, throw exception
-        if (!(books instanceof Book[])) {
+        if (!(books instanceof Book[])) { // Hard code
             throw new IllegalArgumentException();
         }
 
