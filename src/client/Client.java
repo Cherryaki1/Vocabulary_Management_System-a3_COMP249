@@ -28,7 +28,7 @@ public class Client {
     }
 
     // Parameterized constructor
-    public Client(String name, String email, String phone) {
+    public Client(String name, String phone, String email) {
         this.name = name;
         this.email = email;
         this.phone = phone;
